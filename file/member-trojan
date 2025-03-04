@@ -1,3 +1,0 @@
-#!/bin/bash
-clear
-grep -E "^### " "/etc/trojan-go/akun.conf" | cut -d ' ' -f 2 | column -t | sort | uniq | nl
