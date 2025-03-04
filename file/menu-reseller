@@ -1,0 +1,46 @@
+#!/bin/bash
+
+source /etc/os-release
+sp=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
+ct=$(curl -s ipinfo.io/city )
+IPVPS=$(curl -s ipinfo.io/ip )
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$today" +%s)
+uptimesvr="$(uptime -p | cut -d " " -f 2-10)"
+
+# Mendapatkan jam saat ini
+hour=$(date +"%H")
+
+# Menentukan ucapan berdasarkan waktu
+if [ "$hour" -ge 5 ] && [ "$hour" -lt 10 ]; then
+    greeting="𝑺𝒆𝒍𝒂𝒎𝒂𝒕 𝒑𝒂𝒈𝒊 🌄"
+elif [ "$hour" -ge 10 ] && [ "$hour" -lt 15 ]; then
+    greeting="𝑺𝒆𝒍𝒂𝒎𝒂𝒕 𝒔𝒊𝒂𝒏𝒈 🌤️"
+elif [ "$hour" -ge 15 ] && [ "$hour" -lt 20 ]; then
+    greeting="𝑺𝒆𝒍𝒂𝒎𝒂𝒕 𝒔𝒐𝒓𝒆 🌇"
+else
+    greeting="𝑺𝒆𝒍𝒂𝒎𝒂𝒕 𝒎𝒂𝒍𝒂𝒎 🌙"
+fi
+
+# Mendapatkan uptime sistem
+uptime_info=$(uptime -p)
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━"
+echo " 𝓗𝓪𝓵𝓵𝓸 𝓣𝓾𝓪𝓷 👋, $greeting"
+echo "━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Silahkan pilih menu dibawah."
+echo "Info:"
+echo "- Silahkan BACA terlebih dahulu setiap deskripsi Tunnel yang dipilih"
+echo ""
+echo "Note:"
+echo "- Jika terjadi error, coba kirim perintah /start"
+echo "- Memperkecil kemungkinan error, silahkan lakukan perintah /start setiap interaksi baru setelah lebih dari 2 hari dari interaksi terakhir"
+echo "- Gunakan /notes untuk melihat daftar catatan"
+echo "- Wajib test TRIAL dahulu sebelum topup/membeli"
+echo ""
+echo "⏲️ Jam saat ini: $(date '+%H:%M:%S')"
+echo "📅 Hari saat ini: $(date '+%A, %d %B %Y')"
+echo "━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Status : Reseller"
+echo "Bot Uptime : $uptime_info"
+echo "Bot Version 1.0.23 "

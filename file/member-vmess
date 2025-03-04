@@ -1,0 +1,14 @@
+#!/bin/bash
+
+###########- COLOR CODE -##############
+NC="\e[0m"
+green="\033[0;32m"
+red="\033[0;31m"
+###########- END COLOR CODE -##########
+
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo $Name > /usr/local/etc/.$Name.ini
+CekOne=$(cat /usr/local/etc/.$Name.ini)
+
+clear
+grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq | nl

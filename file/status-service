@@ -1,0 +1,91 @@
+#!/bin/bash
+
+skt_crons=$(systemctl status cron | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_nginx=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_udpgw=$(systemctl status udp-mini-1 | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_tun=$(systemctl status ssh | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_udp=$(systemctl status udp-custom | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_hap=$(systemctl status haproxy | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_drop=$(systemctl status dropbear | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_ws=$(systemctl status ws | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_xray=$(systemctl status xray | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+skt_fail2ban=$(systemctl status fail2ban | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+
+####################################
+if [[ ${skt_crons} == "running" ]]; then
+   skarti_crons="⚡ ONLINE"
+else
+   skarti_crons="⛔ OFFLINE"
+fi
+
+if [[ ${skt_nginx} == "running" ]]; then
+   skarti_nginx="⚡ ONLINE"
+else
+   skarti_nginx="⛔ OFFLINE"
+fi
+
+if [[ ${skt_udpgw} == "running" ]]; then
+   skarti_udpgw="⚡ ONLINE"
+else
+   skarti_udpgw="❌⛔ OFFLINE"
+fi
+
+if [[ ${skt_tun} == "running" ]]; then
+   skarti_tun="⚡ ONLINE"
+else
+   skarti_tun="⛔ OFFLINE"
+fi
+
+if [[ ${skt_udp} == "running" ]]; then
+   skarti_udp="⚡ ONLINE"
+else
+   skarti_udp="⛔ OFFLINE"
+fi
+
+if [[ ${skt_hap} == "running" ]]; then
+   skarti_haproxy="⚡ ONLINE"
+else
+   skarti_haproxy="⛔ OFFLINE"
+fi
+
+if [[ ${skt_drop} == "running" ]]; then
+   skarti_dropbear="⚡ ONLINE"
+else
+   skarti_dropbear="⛔ OFFLINE"
+fi
+
+if [[ ${skt_ws} == "running" ]]; then
+   skarti_websocket="⚡ ONLINE"
+else
+   skarti_websocket="⛔ OFFLINE"
+fi
+
+if [[ ${skt_xray} == "running" ]]; then
+   skarti_xray="⚡ ONLINE"
+else
+   skarti_xray="⛔ OFFLINE"
+fi
+
+if [[ ${skt_fail2ban} == "running" ]]; then
+   skarti_fail2ban="⚡ ONLINE"
+else
+   skarti_fail2ban="⛔ OFFLINE"
+fi
+
+
+####################################
+echo -e "━━━━━━━━━━━━━━━━━━━━━"
+echo -e " 🍀 Status of System Services 🍀"
+echo -e "━━━━━━━━━━━━━━━━━━━━━"
+echo -e "❏ CRONS          : $skarti_crons"
+echo -e "❏ NGINX          : $skarti_nginx"
+echo -e "❏ UDPGW          : $skarti_udpgw"
+echo -e "❏ SSH TUN        : $skarti_tun"
+echo -e "❏ SSH UDP        : $skarti_udp"
+echo -e "❏ HAPROXY        : $skarti_haproxy"
+echo -e "❏ DROPBEAR       : $skarti_dropbear"
+echo -e "❏ FAIL2BAN       : $skarti_fail2ban"
+echo -e "❏ WEBSOCKET      : $skarti_websocket"
+echo -e "❏ XRAY VMESS     : $skarti_xray"
+echo -e "❏ XRAY VLESS     : $skarti_xray"
+echo -e "❏ XRAY TROJAN    : $skarti_xray"
